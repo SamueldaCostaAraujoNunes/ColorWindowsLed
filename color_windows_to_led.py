@@ -1,7 +1,12 @@
 from winreg import HKEY_CURRENT_USER, ConnectRegistry, OpenKey, QueryValueEx
 import json
 import requests
-# python -m flake8 color_windows_led.py
+try:
+    from credential import my_auth_user
+except ImportError:
+    print("Vai ter que declarar sua Key Auth na variavel auth_user")
+    my_auth_user = None
+# python -m flake8 color_windows_to_led.py
 
 
 def windows_palette_color_current() -> list:
@@ -22,7 +27,11 @@ def hex_to_rgb(value: str) -> list:
 # -------------------------Programa principal-----------------------------
 
 
-auth_user: str = 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD'  # Sua chave de autenticação da blynk
+# Sua chave de autenticação da blynk
+auth_user: str = (
+    my_auth_user
+    if my_auth_user
+    else 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD')
 
 # cmd -> ping blynk-cloud.com
 ip_blynk_cloud: str = "blynk-cloud.com" or "45.55.96.146"
