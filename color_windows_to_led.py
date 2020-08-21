@@ -4,7 +4,7 @@ import requests
 try:
     from credential import my_auth_user
 except ImportError:
-    print("Vai ter que declarar sua Key Auth na variavel auth_user")
+    print("Declare sua Key Auth na variavel auth_user")
     my_auth_user = None
 # python -m flake8 color_windows_to_led.py
 
