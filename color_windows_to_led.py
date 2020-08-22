@@ -1,4 +1,5 @@
 from winreg import HKEY_CURRENT_USER, ConnectRegistry, OpenKey, QueryValueEx
+from typing import Tuple
 import json
 import requests
 try:
@@ -7,6 +8,7 @@ except ImportError:
     print("Declare sua Key Auth na variavel auth_user")
     MY_AUTH_USER = 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD'
 # python -m flake8 color_windows_to_led.py
+# python -m mypy color_windows_to_led.py
 
 
 def windows_palette_color_current() -> list:
@@ -19,7 +21,7 @@ def windows_palette_color_current() -> list:
     return list_color
 
 
-def hex_to_rgb(value: str) -> list:
+def hex_to_rgb(value: str) -> Tuple[int, int, int]:
     value = value.lstrip('#') if value.startswith("#") else value
     return tuple(int(value[i:i + 2], 16) for i in range(0, 6, 2))
 
