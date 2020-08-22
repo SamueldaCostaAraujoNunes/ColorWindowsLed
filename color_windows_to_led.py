@@ -5,7 +5,7 @@ try:
     from credential import MY_AUTH_USER
 except ImportError:
     print("Declare sua Key Auth na variavel auth_user")
-    MY_AUTH_USER = None
+    MY_AUTH_USER = 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD'
 # python -m flake8 color_windows_to_led.py
 
 
@@ -27,10 +27,7 @@ def hex_to_rgb(value: str) -> list:
 
 
 # Sua chave de autenticação da blynk
-auth_user: str = (
-    MY_AUTH_USER
-    if MY_AUTH_USER
-    else 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD')
+auth_user: str = MY_AUTH_USER
 
 # cmd -> ping blynk-cloud.com
 ip_blynk_cloud: str = "blynk-cloud.com" or "45.55.96.146"
