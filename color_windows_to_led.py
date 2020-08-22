@@ -2,10 +2,10 @@ from winreg import HKEY_CURRENT_USER, ConnectRegistry, OpenKey, QueryValueEx
 import json
 import requests
 try:
-    from credential import my_auth_user
+    from credential import MY_AUTH_USER
 except ImportError:
     print("Declare sua Key Auth na variavel auth_user")
-    my_auth_user = None
+    MY_AUTH_USER = None
 # python -m flake8 color_windows_to_led.py
 
 
@@ -23,14 +23,13 @@ def hex_to_rgb(value: str) -> list:
     value = value.lstrip('#') if value.startswith("#") else value
     return tuple(int(value[i:i + 2], 16) for i in range(0, 6, 2))
 
-
 # -------------------------Programa principal-----------------------------
 
 
 # Sua chave de autenticação da blynk
 auth_user: str = (
-    my_auth_user
-    if my_auth_user
+    MY_AUTH_USER
+    if MY_AUTH_USER
     else 'AAAAA_-BBBBBB_CCCCCCC-DDDDDDDDDD')
 
 # cmd -> ping blynk-cloud.com
