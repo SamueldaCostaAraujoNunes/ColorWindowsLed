@@ -26,16 +26,11 @@ def hex_to_rgb(value: str) -> Tuple[int, int, int]:
     return tuple(int(value[i:i + 2], 16) for i in range(0, 6, 2))
 
 # -------------------------Programa principal-----------------------------
-
-
-# Sua chave de autenticação da blynk
-auth_user: str = MY_AUTH_USER
-
-# cmd -> ping blynk-cloud.com
-ip_blynk_cloud: str = "blynk-cloud.com" or "45.55.96.146"
 gpio: str = "V5"  # A porta que deve receber a cor RGB
+method: str = "update"
 # A URL de acesso a API da blynk
-url: str = f"http://{ip_blynk_cloud}/{auth_user}/update/{gpio}"
+url: str = f"http://blynk-cloud.com/{MY_AUTH_USER}/{method}/{gpio}"
+print(url)
 
 list_hex_color: list = windows_palette_color_current()
 primary_color: str = list_hex_color[3]
