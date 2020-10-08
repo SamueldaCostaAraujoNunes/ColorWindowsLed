@@ -1,5 +1,4 @@
 from winreg import HKEY_CURRENT_USER, ConnectRegistry, OpenKey, QueryValueEx
-from typing import Tuple
 from color import Color
 class WindowsColor(Color):
     def __init__(self):
@@ -15,14 +14,8 @@ class WindowsColor(Color):
         list_color = ['#' + colors[color:color+6] for color in range(0, 64, 8)]
         return list_color
 
-    # def get_color(self, max=False, standard=None):
-    #     return self.color.get_color(max=max, standard=standard)
-
-    # def set_color(self, color, standard):
-    #     self.color.set_color(color, standard)
-
 if __name__ == "__main__":
     cor = WindowsColor()
-    print(cor.get_color(max=False, standard='heX'))
+    print(cor.get_color(max=False, standard='HEX'))
     cor.set_color([240,124,23], "RGB")
     print(cor.get_color(max=True, standard='HEX'))
