@@ -1,9 +1,10 @@
 from winreg import HKEY_CURRENT_USER, ConnectRegistry, OpenKey, QueryValueEx
 from typing import Tuple
-
+from color import Color
 class WindowsColor():
     def __init__(self):
-        self.color = self.hex_to_rgb(self.color_current()[3])
+        #self.color = self.hex_to_rgb(self.color_current()[3])
+        self.color = Color(self.color_current()[3], "HEX")
 
     def color_current(self) -> list:
         registry = ConnectRegistry(None, HKEY_CURRENT_USER)
@@ -14,25 +15,14 @@ class WindowsColor():
         list_color = ['#' + colors[color:color+6] for color in range(0, 64, 8)]
         return list_color
 
-    def to_max(self) -> Tuple[int, int, int]:
-        max_color: int = max(self.color)
-        n_cor = tuple(int((colors/max_color)*255) for colors in self.color)
-        return n_cor
+    def get_color(self, max=False, standard=None):
+        return self.color.get_color(max=max, standard=standard)
 
-    def hex_to_rgb(self, value: str) -> Tuple[int, int, int]:
-        value = value.lstrip('#') if value.startswith("#") else value
-        return tuple(int(value[i:i + 2], 16) for i in range(0, 6, 2))
-
-    def rgb_to_hex(self, rgb: Tuple) -> str:
-        r, g, b = rgb
-        hex_color = f"#{r:02x}{g:02x}{b:02x}"
-        return hex_color.upper()
-
-    def get_color(self, max=False, rgb=True):
-        color = self.to_max() if max else self.color
-        return color if rgb else self.rgb_to_hex(color)
-
+    def set_color(self, color, standard):
+        self.color.set_color(color, standard)
 
 if __name__ == "__main__":
     cor = WindowsColor()
-    print(cor.get_color(max=False, rgb=True))
+    print(cor.get_color(max=True, standard='RGB'))
+    cor.set_color([240,124,23], "RGB")
+    print(cor.get_color(max=True, standard='HEX'))

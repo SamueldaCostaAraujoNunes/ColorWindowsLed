@@ -9,6 +9,6 @@ cor_do_windows = WindowsColor()
 fita = FitaLed("V5", "update")
 mouse = Mouse(1)
 
-color_for_send = cor_do_windows.get_color(max=True, rgb=True)
+color_for_send = cor_do_windows.get_color(max=True, standard="RGB")
 fita.send_color(color_for_send)
 mouse.send_color(color_for_send)
