@@ -9,7 +9,11 @@ cor_do_windows = WindowsColor()
 fita = FitaLed("V5", "update")
 mouse = Mouse(1)
 
+devices = [fita, mouse]
+
 color_for_send = cor_do_windows.get_color(max=True, standard="RGB")
-print(f"A cor atual do Windows é: {color_for_send}")
-fita.send_color(color_for_send)
-mouse.send_color(color_for_send)
+
+# color_for_send = [255,63,0]
+
+for device in devices:
+    device.send_color(color_for_send)

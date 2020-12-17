@@ -18,6 +18,7 @@ class FitaLed():
         self.url: str = f"http://blynk-cloud.com/{MY_AUTH_USER}/{method}/{gpio}"
 
     def send_color(self, color: Tuple):
+        print("Send color for Led Strip:", color)
         headers: dict = {'Content-type': 'application/json'}
         r = requests.put(self.url, data=json.dumps(color), headers=headers)
         return r.status_code == 200
